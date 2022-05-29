@@ -1,8 +1,6 @@
 file = open("liczby.txt").read().split()
-# print(liczby_str)
 numbers = [int(element) for element in file]
 sortnum = sorted(numbers)
-# print(sort_liczby)
 three = []
 five = []
 for frst in sortnum:
