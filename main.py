@@ -1,27 +1,30 @@
-plik = open("przyklad.txt",'r')
-dane = plik.read().split("\n\n")
-dzialki = []
-for line in dane:
-    lineso = line.split("\n")
-    dzialki.append(lineso)
-print(dzialki)
-counter = 0
-countertraw = 0
-for i in range(len(dane)):
-    for j in range(0, len(dane[i])):
-        if(dane[i][j] == '*'):
-            counter+=1
-    if(counter/900>=0.7):
-        countertraw+=1
-        counter = 0
+def balance(text, brackets ="()[]"):
+    op,cl = brackets[::2],brackets[1::2]
+    stack = []
+    for i in text:
+        if i in op:
+            stack.append(op.index(i))
+        elif i in cl:
+            if stack and stack[-1] == cl.index(i):
+                stack.pop()
+            else:
+                return False
+    return (not stack)
+n = int(input())
+a = []
+i = 0
+while i < n:
+    x = input()
+    if x:
+        a.append(x)
+    else:
+        break
+k = 0
+while k < n:
+    if(balance(str(a[k]))):
+        print("Yes")
+    else:
+        print("No")
+    k+=1
 
-print(countertraw)
 
-
-# 4.2
-
-square = [0,0]
-for i in range(len(dzialki)):
-    temp = dzialki[i]
-    rotate = ""
-    for i in range()
