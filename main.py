@@ -1,30 +1,42 @@
-def balance(text, brackets ="()[]"):
-    op,cl = brackets[::2],brackets[1::2]
-    stack = []
-    for i in text:
-        if i in op:
-            stack.append(op.index(i))
-        elif i in cl:
-            if stack and stack[-1] == cl.index(i):
-                stack.pop()
-            else:
-                return False
-    return (not stack)
-n = int(input())
-a = []
-i = 0
-while i < n:
-    x = input()
-    if x:
-        a.append(x)
-    else:
-        break
-k = 0
-while k < n:
-    if(balance(str(a[k]))):
-        print("Yes")
-    else:
-        print("No")
-    k+=1
+def poprawna(pesel):
+    suma = 0
+    suma = (int(pesel[0])*1 + int(pesel[1])*3 + int(pesel[2])*7 + int(pesel[3])*9 + int(pesel[4])*1 + int(pesel[5])*3 + int(pesel[6])*7+int(pesel[7])*9+int(pesel[8])*1+ int(pesel[9])*3+int(pesel[10]))
+    return suma
 
+file = open("przyklad.txt", "r")
+pesel = []
+with open("dane.txt", "r") as f:
+    for line in f.readlines():
+        pesel.append(line)
 
+#zadanie 6_1
+kobiet = 0
+mezczyzn = 0
+with open("dane.txt", "r") as f:
+    for line in f.readlines():
+        if(int(line[9])%2==0):
+            kobiet+=1
+        else:
+            mezczyzn+=1
+print(kobiet, mezczyzn)
+# 442 558
+
+#zadanie 6_2
+counter = 0
+for i in pesel:
+    m = int(i[2:4])
+    if m > 12:
+        m=m-20
+    if(m==11):
+        counter+=1
+
+print(counter)
+#90
+
+#zadanie 6_3
+blend = []
+with open("dane.txt", "r") as f:
+    for line in f.readlines():
+        if(poprawna(line)%10!=0):
+            blend.append(line)
+print(blend)
